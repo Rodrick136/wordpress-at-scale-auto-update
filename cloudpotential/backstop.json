@@ -27,7 +27,13 @@
       "url": "https://www.cloudpotential.com/",
       "referenceUrl": "https://update-wp-c-cornerstone.pantheonsite.io",
       "hideSelectors": [],
-      "selectors": [],
+      "selectors": [
+          "#main-content",
+          "#main-header"
+      ],
+      "removeSelectors": [
+          "#facebook-row"
+       ],
       "readyEvent": null,
       "delay": 20000,
       "misMatchThreshold" : 1
@@ -36,7 +42,11 @@
       "label": "Contact Us",
       "url": "https://www.cloudpotential.com/contact-us/",
       "referenceUrl": "https://update-wp-c-cornerstone.pantheonsite.io/contact-us/",
-      "selectors": [],
+      "selectors": [
+          "#main-content",
+          "#main-header"
+      ],
+      "removeSelectors": [],
       "readyEvent": null,
       "delay": 20000,
       "misMatchThreshold" : 1
