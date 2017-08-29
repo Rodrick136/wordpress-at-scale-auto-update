@@ -13,6 +13,9 @@ terminus auth:login --machine-token=${TERMINUS_MACHINE_TOKEN}
 echo -e "\nDeleting the ${MULTIDEV} multidev environment..."
 terminus multidev:delete $SITE_UUID.$MULTIDEV --delete-branch --yes
 
+# Adding some time to see if waiting for the server helps
+sleep 2m
+
 # recreate the multidev environment
 echo -e "\nRe-creating the ${MULTIDEV} multidev environment..."
 terminus multidev:create $SITE_UUID.live $MULTIDEV
