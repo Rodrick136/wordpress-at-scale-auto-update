@@ -29,7 +29,7 @@
       "hideSelectors": [],
       "selectors": [],
       "readyEvent": null,
-      "delay": 1000,
+      "delay": 20000,
       "misMatchThreshold" : 1
     },
     {
@@ -38,7 +38,7 @@
       "referenceUrl": "https://update-wp-c-cornerstone.pantheonsite.io/contact-us/",
       "selectors": [],
       "readyEvent": null,
-      "delay": 5000,
+      "delay": 20000,
       "misMatchThreshold" : 1
     }
   ],
