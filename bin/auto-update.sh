@@ -1,7 +1,5 @@
 #!/bin/bash
 
-MULTIDEV="update-wp"
-
 UPDATES_APPLIED=false
 
 # Stash Circle Artifacts URL
