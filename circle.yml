@@ -24,7 +24,6 @@ dependencies:
     # Install gulp
     - echo Installing gulp globally
     - npm install -g gulp
-    - npm install gulp
     - npm install -g backstopjs
 
   override:
@@ -33,10 +32,6 @@ dependencies:
 
 test:
   override:
-    - >
-      if [ -n "${VARIANT_FILE}" ]; then
-        gulp test --backstopConfigFilePath=${VARIANT_FILE};
-      fi
     - >
       if [ -n "${CRON_BUILD}" ]; then
         ./bin/auto-update.sh;
