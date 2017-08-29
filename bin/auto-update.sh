@@ -14,7 +14,12 @@ echo -e "\nDeleting the ${MULTIDEV} multidev environment..."
 terminus multidev:delete $SITE_UUID.$MULTIDEV --delete-branch --yes
 
 # Adding some time to see if waiting for the server helps
-sleep 2m
+secs=$((2 * 60))
+while [ $secs -gt 0 ]; do
+   echo -ne "$secs\033[0K\r"
+   sleep 1
+   : $((secs--))
+done
 
 # recreate the multidev environment
 echo -e "\nRe-creating the ${MULTIDEV} multidev environment..."
