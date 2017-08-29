@@ -24,6 +24,7 @@ dependencies:
     # Install gulp
     - echo Installing gulp globally
     - npm install -g gulp
+    - npm install gulp
     - npm install -g backstopjs
 
   override:
