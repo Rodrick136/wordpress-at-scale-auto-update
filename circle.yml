@@ -25,6 +25,7 @@ dependencies:
     - echo Installing gulp globally
     - npm install -g gulp
     - npm install -g backstopjs
+    - sudo apt-get install jq
 
   override:
     # Install Terminus
