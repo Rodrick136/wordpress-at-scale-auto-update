@@ -30,24 +30,19 @@ n_136=0
 page_response=1
 until [ $page_response -eq 0 ] || [ $n_136 -ge 60 ]; do
 
-	curl --output /dev/null --silent --head --fail http://${MULTIDEV}-${SITENAME}.pantheonsite.io/
+	curl -s -o /dev/null -w  "%{http_code}" http://${MULTIDEV}-${SITENAME}.pantheonsite.io/
 	page_response=$?
-	
-	if [ $? -eq 0 ]
-then
-  echo -e "\nSuccessfully pinged Multi Dev Environment"
-else
   	n_136=$[$n_136+1]
 	printf '.'
 	sleep 5
-fi
+
 done
 
 if [ $n_136 -ge 60 ]
 then
   exit
 else
-  	echo -e '\nPass'
+  	echo -e "\nSuccessfully pinged Multi Dev Environment"
 fi
 
 # check for upstream updates
