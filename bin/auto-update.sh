@@ -25,6 +25,31 @@ done
 echo -e "\nRe-creating the ${MULTIDEV} multidev environment..."
 terminus multidev:create $SITE_UUID.live $MULTIDEV
 
+#wait until url checks out
+n_136=0
+page_response=1
+until [ $page_response -eq 0 ] || [ $n_136 -ge 60 ]; do
+
+	curl --output /dev/null --silent --head --fail http://${MULTIDEV}-${SITENAME}.pantheonsite.io/
+	page_response=$?
+	
+	if [ $? -eq 0 ]
+then
+  echo -e "\nSuccessfully pinged Multi Dev Environment"
+else
+  	n_136=$[$n_136+1]
+	printf '.'
+	sleep 5
+fi
+done
+
+if [ $n_136 -ge 60 ]
+then
+  exit
+else
+  	echo -e '\nPass'
+fi
+
 # check for upstream updates
 echo -e "\nChecking for upstream updates on the ${MULTIDEV} multidev..."
 # the output goes to stderr, not stdout
