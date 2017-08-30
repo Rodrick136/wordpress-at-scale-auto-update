@@ -25,14 +25,15 @@
     {
       "label": "Homepage",
       "url": "https://www.cloudpotential.com/",
-      "referenceUrl": "https://update-wp-c-cornerstone.pantheonsite.io",
+      "referenceUrl": "https://wpautoup1-c-cornerstone.pantheonsite.io",
       "hideSelectors": [],
       "selectors": [
           "#main-content",
           "#main-header"
       ],
       "removeSelectors": [
-          "#facebook-row"
+          "#facebook-row",
+          "iframe"
        ],
       "readyEvent": null,
       "delay": 20000,
@@ -41,12 +42,12 @@
     {
       "label": "Contact Us",
       "url": "https://www.cloudpotential.com/contact-us/",
-      "referenceUrl": "https://update-wp-c-cornerstone.pantheonsite.io/contact-us/",
+      "referenceUrl": "https://wpautoup1-c-cornerstone.pantheonsite.io/contact-us/",
       "selectors": [
           "#main-content",
           "#main-header"
       ],
-      "removeSelectors": [],
+      "removeSelectors": [ "iframe" ],
       "readyEvent": null,
       "delay": 20000,
       "misMatchThreshold" : 1
