@@ -32,7 +32,8 @@
           "#main-header"
       ],
       "removeSelectors": [
-          "#facebook-row"
+          "#facebook-row",
+          "iframe"
        ],
       "readyEvent": null,
       "delay": 20000,
@@ -46,7 +47,7 @@
           "#main-content",
           "#main-header"
       ],
-      "removeSelectors": [],
+      "removeSelectors": [ "iframe" ],
       "readyEvent": null,
       "delay": 20000,
       "misMatchThreshold" : 1
