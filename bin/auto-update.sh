@@ -13,9 +13,37 @@ terminus auth:login --machine-token=${TERMINUS_MACHINE_TOKEN}
 echo -e "\nDeleting the ${MULTIDEV} multidev environment..."
 terminus multidev:delete $SITE_UUID.$MULTIDEV --delete-branch --yes
 
+# Adding some time to see if waiting for the server helps
+secs=$((2 * 60))
+while [ $secs -gt 0 ]; do
+   echo -ne "$secs\033[0K\r"
+   sleep 1
+   : $((secs--))
+done
+
 # recreate the multidev environment
 echo -e "\nRe-creating the ${MULTIDEV} multidev environment..."
 terminus multidev:create $SITE_UUID.live $MULTIDEV
+
+#wait until url checks out
+n_136=0
+page_response=1
+until [ $page_response -eq '200' ] || [ $n_136 -ge 60 ]; do
+
+	page_response=$(curl -s -o /dev/null -w  "%{http_code}" http://${MULTIDEV}-${SITENAME}.pantheonsite.io/)
+  	n_136=$[$n_136+1]
+	printf '.'
+	sleep 5
+
+done
+
+if [ $n_136 -ge 60 ]
+then
+  echo $page_response
+  exit 1
+else
+  	echo -e "\nSuccessfully pinged Multi Dev Environment"
+fi
 
 # check for upstream updates
 echo -e "\nChecking for upstream updates on the ${MULTIDEV} multidev..."
