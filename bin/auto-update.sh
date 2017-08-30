@@ -28,10 +28,9 @@ terminus multidev:create $SITE_UUID.live $MULTIDEV
 #wait until url checks out
 n_136=0
 page_response=1
-until [ $page_response -eq 0 ] || [ $n_136 -ge 60 ]; do
+until [ $page_response -eq '200' ] || [ $n_136 -ge 60 ]; do
 
-	curl -s -o /dev/null -w  "%{http_code}" http://${MULTIDEV}-${SITENAME}.pantheonsite.io/
-	page_response=$?
+	page_response=$(curl -s -o /dev/null -w  "%{http_code}" http://${MULTIDEV}-${SITENAME}.pantheonsite.io/)
   	n_136=$[$n_136+1]
 	printf '.'
 	sleep 5
@@ -40,7 +39,8 @@ done
 
 if [ $n_136 -ge 60 ]
 then
-  exit
+  echo $page_response
+  exit 1
 else
   	echo -e "\nSuccessfully pinged Multi Dev Environment"
 fi
