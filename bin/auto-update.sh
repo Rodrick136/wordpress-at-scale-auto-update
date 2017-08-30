@@ -1,6 +1,8 @@
 #!/bin/bash
 
 UPDATES_APPLIED=false
+reference_Url="https://${MULTIDEV}-${SITENAME}.pantheonsite.io/"
+reference_Url_contact="${reference_Url}/contact-us/"
 
 # Stash Circle Artifacts URL
 CIRCLE_ARTIFACTS_URL="$CIRCLE_BUILD_URL/artifacts/$CIRCLE_NODE_INDEX/$CIRCLE_ARTIFACTS"
@@ -138,14 +140,19 @@ else
 
     # backstop visual regression
     echo -e "\nRunning BackstopJS tests..."
+	
+	# Modify Backstop.json for the site reference
+	echo -e "\nUpdating Multi Dev URL..."
+	MULTIDEV_URL_UPDATES=$(bash ./$SITENAME/manipulate_json.sh)
+	
 
     # Backstop visual regression
     echo -e "\nRunning backstop reference..."
 
-    backstop reference --config=$VARIANT_FILE
+    backstop reference --config=$VARIANT_FILE/backstop.json
 
     echo -e "\nRunning backstop test..."
-    VISUAL_REGRESSION_RESULTS=$(backstop test --config=${VARIANT_FILE} || echo 'true')
+    VISUAL_REGRESSION_RESULTS=$(backstop test --config=${VARIANT_FILE}/backstop.json || echo 'true')
 
     echo "${VISUAL_REGRESSION_RESULTS}"
 
