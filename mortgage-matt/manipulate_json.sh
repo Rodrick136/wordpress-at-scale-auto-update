@@ -1,8 +1,6 @@
 #!/bin/bash
 
 
-VARIANT_FILE="./c-cornerstone"
-
 reference_Url="https://${MULTIDEV}-${SITENAME}.pantheonsite.io/"
 reference_Url_contact="${reference_Url}/contact-us/"
 
