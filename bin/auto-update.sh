@@ -32,7 +32,7 @@ n_136=0
 page_response=1
 until [ $page_response -eq '200' ] || [ $n_136 -ge 60 ]; do
 
-	page_response=$(curl -s -o /dev/null -w  "%{http_code}" http://${MULTIDEV}-${SITENAME}.pantheonsite.io/)
+	page_response=$(curl -s -o /dev/null -w  "%{http_code}" https://${MULTIDEV}-${SITENAME}.pantheonsite.io/)
   	n_136=$[$n_136+1]
 	printf '.'
 	sleep 5
